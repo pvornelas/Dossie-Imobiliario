@@ -8,7 +8,7 @@ public class ProcessoImobiliario
     public string Cliente { get; set; } = default!;
     public string Imovel { get; set; } = default!;
 
-    public DateTime CriadoEmUtc { get; set; } = DateTime.UtcNow;
+    public DateTime CriadoEm { get; set; } = DateTime.Now;
 
     public List<DocumentoProcesso> Documentos { get; set; } = default!;
 }

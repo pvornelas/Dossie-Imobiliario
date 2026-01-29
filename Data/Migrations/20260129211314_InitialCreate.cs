@@ -20,7 +20,7 @@ namespace DossieImobiliario.Data.Migrations
                     NumeroProcesso = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
                     Cliente = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     Imovel = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
-                    CriadoEmUtc = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace DossieImobiliario.Data.Migrations
                     CaminhoRelativo = table.Column<string>(type: "TEXT", maxLength: 400, nullable: false),
                     ContentType = table.Column<string>(type: "TEXT", maxLength: 120, nullable: false),
                     TamanhoBytes = table.Column<long>(type: "INTEGER", nullable: false),
-                    EnviadoEmUtc = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    EnviadoEm = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

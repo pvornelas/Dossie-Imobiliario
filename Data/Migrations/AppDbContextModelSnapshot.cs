@@ -33,7 +33,7 @@ namespace DossieImobiliario.Data.Migrations
                         .HasMaxLength(120)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("EnviadoEmUtc")
+                    b.Property<DateTime>("EnviadoEm")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NomeOriginal")
@@ -75,7 +75,7 @@ namespace DossieImobiliario.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CriadoEmUtc")
+                    b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Imovel")

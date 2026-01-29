@@ -31,7 +31,7 @@ public class DocumentoProcessoConfiguration : IEntityTypeConfiguration<Documento
         entity.Property(x => x.TamanhoBytes)
             .IsRequired();
 
-        entity.Property(x => x.EnviadoEmUtc)
+        entity.Property(x => x.EnviadoEm)
             .IsRequired();
 
         entity.HasIndex(x => x.ProcessoImobiliarioId);

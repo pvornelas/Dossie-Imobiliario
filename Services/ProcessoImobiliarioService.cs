@@ -28,7 +28,7 @@ public class ProcessoImobiliarioService
             Cliente = cliente.Trim(),
             Imovel = imovel.Trim(),
             NumeroProcesso = "PENDENTE",
-            CriadoEmUtc = DateTime.UtcNow
+            CriadoEm = DateTime.Now
         };
 
         _db.Processos.Add(processo);
@@ -57,7 +57,7 @@ public class ProcessoImobiliarioService
                 CaminhoRelativo = s.CaminhoRelativo,
                 ContentType = s.ContentType,
                 TamanhoBytes = s.TamanhoBytes,
-                EnviadoEmUtc = DateTime.UtcNow
+                EnviadoEm = DateTime.Now
             }).ToList();
 
             _db.Documentos.AddRange(docs);
@@ -97,7 +97,7 @@ public class ProcessoImobiliarioService
         }
 
         return await query
-            .OrderByDescending(p => p.CriadoEmUtc)
+            .OrderByDescending(p => p.CriadoEm)
             .ToListAsync(ct);
     }
 
@@ -168,6 +168,5 @@ public class ProcessoImobiliarioService
         return true;
     }
 
-    private static string GerarNumeroProcesso(int id)
-        => $"IMOB-{DateTime.UtcNow:yyyy}-{id:D6}";
+    private static string GerarNumeroProcesso(int id) => $"IMOB-{DateTime.Now:yyyy}-{id:D6}";
 }

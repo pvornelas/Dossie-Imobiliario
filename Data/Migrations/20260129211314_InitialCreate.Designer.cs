@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DossieImobiliario.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260129041053_InitialCreate")]
+    [Migration("20260129211314_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,7 +36,7 @@ namespace DossieImobiliario.Data.Migrations
                         .HasMaxLength(120)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("EnviadoEmUtc")
+                    b.Property<DateTime>("EnviadoEm")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NomeOriginal")
@@ -78,7 +78,7 @@ namespace DossieImobiliario.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CriadoEmUtc")
+                    b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Imovel")

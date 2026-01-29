@@ -20,7 +20,7 @@ public class ProcessoImobiliarioConfiguration : IEntityTypeConfiguration<Process
             .IsRequired()
             .HasMaxLength(200);
 
-        entity.Property(e => e.CriadoEmUtc)
+        entity.Property(e => e.CriadoEm)
             .IsRequired();
 
         entity.HasIndex(e => e.NumeroProcesso).IsUnique();

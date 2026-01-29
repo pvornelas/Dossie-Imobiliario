@@ -36,14 +36,14 @@ public class ProcessoImobiliarioController : ControllerBase
             NumeroProcesso: processo.NumeroProcesso,
             Cliente: processo.Cliente,
             Imovel: processo.Imovel,
-            CriadoEmUtc: processo.CriadoEmUtc,
+            CriadoEmUtc: processo.CriadoEm,
             Documentos: documentos.Select(d => new DocumentoResponse(
                 Id: d.Id,
                 TipoDocumento: d.TipoDocumento,
                 NomeOriginal: d.NomeOriginal,
                 ContentType: d.ContentType,
                 TamanhoBytes: d.TamanhoBytes,
-                EnviadoEmUtc: d.EnviadoEmUtc
+                EnviadoEmUtc: d.EnviadoEm
             )).ToList(),
             DownloadUrl: downloadUrl
         );
@@ -61,7 +61,7 @@ public class ProcessoImobiliarioController : ControllerBase
             NumeroProcesso: p.NumeroProcesso,
             Cliente: p.Cliente,
             Imovel: p.Imovel,
-            CriadoEmUtc: p.CriadoEmUtc,
+            CriadoEmUtc: p.CriadoEm,
             DownloadUrl: $"/api/processo-imobiliario/{p.NumeroProcesso}/download"
         )).ToList();
 
@@ -82,16 +82,16 @@ public class ProcessoImobiliarioController : ControllerBase
             NumeroProcesso: processo.NumeroProcesso,
             Cliente: processo.Cliente,
             Imovel: processo.Imovel,
-            CriadoEmUtc: processo.CriadoEmUtc,
+            CriadoEmUtc: processo.CriadoEm,
             Documentos: processo.Documentos
-                .OrderByDescending(d => d.EnviadoEmUtc)
+                .OrderByDescending(d => d.EnviadoEm)
                 .Select(d => new DocumentoResponse(
                     Id: d.Id,
                     TipoDocumento: d.TipoDocumento,
                     NomeOriginal: d.NomeOriginal,
                     ContentType: d.ContentType,
                     TamanhoBytes: d.TamanhoBytes,
-                    EnviadoEmUtc: d.EnviadoEmUtc
+                    EnviadoEmUtc: d.EnviadoEm
                 )).ToList(),
             DownloadUrl: downloadUrl
         );

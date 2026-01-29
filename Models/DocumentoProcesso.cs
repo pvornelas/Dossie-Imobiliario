@@ -13,5 +13,5 @@ public class DocumentoProcesso
     public string ContentType { get; set; } = "application/octet-stream";
     public long TamanhoBytes { get; set; }
 
-    public DateTime EnviadoEmUtc { get; set; } = DateTime.UtcNow;
+    public DateTime EnviadoEm { get; set; } = DateTime.Now;
 }
