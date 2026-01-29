@@ -13,9 +13,9 @@ builder.Services.AddSqliteDatabase(builder.Configuration, builder.Environment);
 
 builder.Services.AddCorsPolicies(builder.Configuration);
 
-// DI
 builder.Services.AddScoped<LocalFileStorage>();
 builder.Services.AddScoped<ProcessoImobiliarioService>();
+builder.Services.AddScoped<ProcessoImobiliarioRepository>();
 
 var app = builder.Build();
 

@@ -32,7 +32,7 @@ public class ProcessoImobiliarioService
         };
 
         _db.Processos.Add(processo);
-        await _db.SaveChangesAsync(ct); // gera Id
+        await _db.SaveChangesAsync(ct);
 
         processo.NumeroProcesso = GerarNumeroProcesso(processo.Id);
         await _db.SaveChangesAsync(ct);
@@ -40,14 +40,11 @@ public class ProcessoImobiliarioService
         if (documentos is null || documentos.Count == 0)
             return (processo, new List<DocumentoProcesso>());
 
-        List<LocalFileStorage.ArquivoSalvoResult> salvos = new();
-        // 1) Tenta salvar tudo no disco na pasta do numero do processo
+        List<ArquivoSalvoResult> salvos = new();
         try
         {
-
             salvos = await _storage.SalvarTodosAsync(processo.NumeroProcesso, documentos, ct);
 
-            // 2) Cria entidades DocumentoProcesso
             var docs = salvos.Select(s => new DocumentoProcesso
             {
                 ProcessoImobiliarioId = processo.Id,
@@ -67,14 +64,12 @@ public class ProcessoImobiliarioService
         }
         catch
         {
-            // rollback: remove arquivos que foram gravados
             foreach (var s in salvos)
                 _storage.ExcluirArquivo(s.CaminhoRelativo);
 
-            // remove a pasta (se sobrar coisa)
             _storage.RemoverPastaDoProcesso(processo.NumeroProcesso);
 
-            // remove o processo do banco
+
             var proc = await _db.Processos.FirstOrDefaultAsync(p => p.Id == processo.Id, ct);
             if (proc is not null)
             {
@@ -114,9 +109,7 @@ public class ProcessoImobiliarioService
             .FirstOrDefaultAsync(p => p.NumeroProcesso == numero, ct);
     }
 
-    // DOWNLOAD: todos os docs do processo
-    // Se tiver 1 doc -> retorna arquivo direto; se >1 -> zip
-    public async Task<LocalFileStorage.DownloadResult?> DownloadDocumentosDoProcessoAsync(
+    public async Task<DownloadResult?> DownloadDocumentosDoProcessoAsync(
         string numeroProcesso,
         CancellationToken ct = default)
     {
@@ -143,7 +136,6 @@ public class ProcessoImobiliarioService
         return await _storage.DownloadTodosAsync(lista, nomeZip, ct);
     }
 
-    // DELETE: remove processo + documentos + pasta
     public async Task<bool> RemoverPorNumeroAsync(string numeroProcesso, CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(numeroProcesso))
@@ -158,11 +150,9 @@ public class ProcessoImobiliarioService
         if (processo is null)
             return false;
 
-        // remove do banco (cascade remove Documentos)
         _db.Processos.Remove(processo);
         await _db.SaveChangesAsync(ct);
 
-        // remove arquivos do disco
         _storage.RemoverPastaDoProcesso(numero);
 
         return true;

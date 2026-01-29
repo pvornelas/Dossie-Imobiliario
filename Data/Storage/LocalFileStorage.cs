@@ -8,8 +8,7 @@ public class LocalFileStorage
     public LocalFileStorage(IWebHostEnvironment env, IConfiguration configuration)
     {
         _env = env;
-        _diretorioBaseRelativo = configuration["Storage:Documentos"]
-            ?? throw new InvalidOperationException("Storage:Documentos não configurado.");
+        _diretorioBaseRelativo = configuration["Storage:Documentos"] ?? throw new InvalidOperationException("Storage:Documentos não configurado.");
     }
 
     private string DiretorioBaseAbsoluto =>
@@ -22,7 +21,6 @@ public class LocalFileStorage
 
     private static string NomeSeguro(string nome) => Path.GetFileName(nome);
 
-    // UPLOAD: grava todos os arquivos do processo e retorna os metadados necessários pro banco
     public async Task<List<ArquivoSalvoResult>> SalvarTodosAsync(string pastaProcesso, List<(string TipoDocumento, IFormFile Arquivo)> arquivos, CancellationToken ct = default)
     {
         if (arquivos is null || arquivos.Count == 0)
@@ -65,7 +63,6 @@ public class LocalFileStorage
         return resultados;
     }
 
-    // DOWNLOAD: se 1 arquivo -> stream direto; se >1 -> zip em memória
     public async Task<DownloadResult> DownloadTodosAsync(List<(string NomeOriginal, string CaminhoRelativo)> arquivos, string nomeZip, CancellationToken ct = default)
     {
         if (arquivos is null || arquivos.Count == 0)

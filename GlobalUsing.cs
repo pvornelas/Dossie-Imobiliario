@@ -1,4 +1,5 @@
 ﻿global using DossieImobiliario.Data;
+global using DossieImobiliario.Data.Repository;
 global using DossieImobiliario.Data.Storage;
 global using DossieImobiliario.Dtos;
 global using DossieImobiliario.Extensions;
@@ -13,3 +14,4 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Serilog;
 global using System.Diagnostics;
 global using System.IO.Compression;
+global using static DossieImobiliario.Data.Storage.LocalFileStorage;

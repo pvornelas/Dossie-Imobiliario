@@ -4,10 +4,12 @@
 public class ProcessoImobiliarioController : ControllerBase
 {
     private readonly ProcessoImobiliarioService _service;
+    private readonly ProcessoImobiliarioRepository _repo;
 
-    public ProcessoImobiliarioController(ProcessoImobiliarioService service)
+    public ProcessoImobiliarioController(ProcessoImobiliarioService service, ProcessoImobiliarioRepository repo)
     {
         _service = service;
+        _repo = repo;
     }
 
     [HttpPost]
