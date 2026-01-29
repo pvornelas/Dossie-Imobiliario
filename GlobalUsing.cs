@@ -1,0 +1,15 @@
+﻿global using DossieImobiliario.Data;
+global using DossieImobiliario.Data.Storage;
+global using DossieImobiliario.Dtos;
+global using DossieImobiliario.Extensions;
+global using DossieImobiliario.Middlewares;
+global using DossieImobiliario.Models;
+global using DossieImobiliario.Services;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.StaticFiles;
+global using Microsoft.Data.Sqlite;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Serilog;
+global using System.Diagnostics;
+global using System.IO.Compression;
